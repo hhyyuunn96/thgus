@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import matplotlib
 import matplotlib.font_manager as fm
 import numpy as np
-import os
+import pandas as pd
 
-# 📌 그래프 글꼴 설정 (Streamlit Cloud 배포용)
-font_path = os.path.join(os.path.dirname(__file__), "fonts", "NanumGothicCoding.ttf")
+# 그래프 글꼴 설정 (Streamlit Cloud 호환)
+font_path = "fonts/NanumGothicCoding.ttf"  # GitHub에 업로드한 폰트 경로
 font_prop = fm.FontProperties(fname=font_path)
 matplotlib.rcParams['font.family'] = font_prop.get_name()
 
