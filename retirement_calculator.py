@@ -36,6 +36,21 @@ assets = st.number_input("보유 자산 (만원)", min_value=0, value=10000)
 avg_inflation_rate = 0.025  #평균 인플레이션율 2.5% 자동 적용
 st.caption("💡 기준 인플레이션율 2.5%가 자동 적용되어 연간 지출이 계산됩니다.")
 
+# 사용자의 연간 총수입 계산
+annual_total_income = (monthly_income + pension) * 12
+
+# 소득 분위 판별
+if annual_total_income < 1500:
+    income_bracket = "1분위"
+elif annual_total_income >= 3000:
+    income_bracket = "5분위"
+else:
+    income_bracket = "3분위"
+
+# 결과 표시
+st.markdown(f"### 💬 추정 소득 분위: {income_bracket}")
+st.caption("ℹ️ 소득 분위 기준: 1분위(1,500만 원 미만), 3분위(1,500만~3,000만 원), 5분위(3,000만 원 이상)")
+
 # 월 지출 항목
 st.subheader("💸 월 지출 항목 (단위: 만원)")
 housing = st.number_input("주거비", min_value=0, value=30)
@@ -88,4 +103,3 @@ elif remaining_deficit <= 0 and deficit_years > 0:
     st.markdown(f"🟡 자산은 충분하지만, {deficit_years}년 동안 일시적 적자가 발생할 수 있습니다.")
 else:
     st.markdown(f"⚠️ 현재 자산만으로는 부족합니다. 총 {deficit_years}년 동안 적자가 발생할 수 있습니다.")
-
